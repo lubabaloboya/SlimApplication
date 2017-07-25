@@ -1,0 +1,55 @@
+{% extends '/app.twig' %}
+
+{% block content %}
+
+    <table rules="all" class="database table table-striped table-hover tablesorter">
+        <thead>
+        
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date Created</th>
+            <th>Date Updated</th>
+            <th class='table-icon'></th>
+            <th class='table-icon'></th>
+            <th class='table-icon'></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.updated_at }}</td>
+
+            <td class="table-icon">
+                <a href="{{ path_for('users.edit') }}?id={{ user.id }}">
+                    <button type="button"  value="{{ user.id }}" class="btn btn-success view">View</button>
+                     <input type="hidden" name="view" value="{{ user.id }}">
+                </a>
+            </td>
+             <td class="table-icon">
+                <a href="{{ path_for('users.edit') }}?id={{ user.id }}">
+                    <button type="submit" value="{{ user.id }}" class="btn btn-default edit">Edit</button>
+                    <input type="hidden" name="edit" value="{{ user.id }}">
+                </a>
+            </td>
+             <td class="table-icon">
+                <a href="{{ path_for('users.delete') }}?id={{ user.id }}">
+                  <button type="button"  value="{{ user.id }}" class="btn btn-danger delete">Delete</button>
+                  <input type="hidden" name="edit" value="{{ user.id }}">
+                </a>
+                
+            </td>
+        </tr>
+
+         {% endfor%}
+
+        </tbody>
+    </table>
+
+{% endblock %}

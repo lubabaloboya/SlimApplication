@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Slim Application</title>
+
+        <link rel="stylesheet" href="{{ base_url() }}/css/plugins/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/app.css">
+    </head>
+
+    <body>
+
+        {% include 'templates/partials/navigation.twig' %}
+
+        <div class="container">
+            {% include 'templates/partials/flash.twig' %}
+            {% block content %} {% endblock %}
+        </div>
+
+    <script src="{{ base_url() }}/javascript/plugins/jquery.min.js"></script>
+    <script src="{{ base_url() }}/javascript/plugins/bootstrap.min.js"></script>
+    </body>
+</html>
