@@ -3,56 +3,56 @@
 namespace App\Entities;
 
 /**
- * @Entity
- * @Table(name="roles")
+ *@Entity
+ *@Table(name="roles")
  */
 
 class Role {
 
   /**
-  * @id
-  * @Column(type="integer")
-  * @GeneratedValue
+  *@Id
+  *@Column(type="integer")
+  *@GeneratedValue()
   */
   protected $id;
 
   /** 
-  * @Column(type="string", nullable=false, ) 
+  *@Column(type="string", nullable=false) 
   */
   protected $roleName;
 
-   /** 
-  * @Column(type="boolean", nullable=false) 
+  /** 
+  *@Column(type="boolean", nullable=false) 
   */
   protected $enabled;
 
   /**
-   * @OneToMany(targetEntity="User", mappedBy="role")
-   */
+  *@OneToMany(targetEntity="User", mappedBy="role") 
+  */
    protected $user;
 
 
-  function getId() {
+  public function getId() {
     return $this->id;
   }
 
-  function setRoleName($roleName) {
+  public function setRoleName($roleName) {
     return $this->roleName = $roleName;
   }
 
-  function getRoleName() {
+  public function getRoleName() {
     return $this->roleName;
   }
 
-  function setEnabled() {
+  public function setEnabled() {
     return $this->enabled = true;
   }
 
-  function getEnabled() {
+  public function getEnabled() {
     return $this->enabled;
   }
 
-  function getUser() {
+  public function getUser() {
     return $this->user;
   }
 

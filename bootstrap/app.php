@@ -42,7 +42,7 @@ $container["db"] = function ($container) use ($capsule) {
 $container["entityManager"] = function ($container) {
 
     $paths = array("App/Entities/");
-    $isDevMode = false;
+    $isDevMode = true;
 
     // the connection configuration
     $dbParams = array(

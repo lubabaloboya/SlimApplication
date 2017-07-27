@@ -3,112 +3,110 @@
 namespace App\Entities;
 
 /**
- * @Entity
- * @Table(name="users")
+ *@Entity
+ *@Table(name="users")
  */
 class User {
 
-  /** 
-    * @Id
-    * @Column(type="integer") 
-    * @GeneratedValue()
+    /** 
+    *@Id
+    *@Column(type="integer") 
+    *@GeneratedValue()
     */
     protected $id;
 
     /**
-    * @ManyToOne(targetEntity="App\Entities\Role", inversedBy="user", cascade={"remove"})
-    * @JoinColumn(name="role_id", referencedColumnName="id", onDelete="Cascade")
+    *@ManyToOne(targetEntity="Role", inversedBy="user")
     */
     protected $role;
 
     /**
-    * @ManyToOne(targetEntity="App\Entities\Title", inversedBy="user", cascade={"remove"})
-    * @JoinColumn(name="title_id", referencedColumnName="id", onDelete="Cascade")
+    *@ManyToOne(targetEntity="Title", inversedBy="user")
     */
     protected $title;
 
     /** 
-    * @Column(type="string", nullable=true) 
+    *@Column(type="string", nullable=true) 
     */
     protected $name;
 
     /** 
-    * @Column(type="string", nullable=true) 
+    *@Column(type="string", nullable=true) 
     */
     protected $email;
 
-     /** 
-    * @Column(type="string", nullable=false) 
+    /** 
+    *@Column(type="string", nullable=false) 
     */
     protected $password;
 
     /** 
-    * @Column(type="datetime", nullable=false) 
+    *@Column(type="datetime", nullable=false) 
     */
     protected $created_at;
 
     /** 
-    * @Column(type="datetime", nullable=false) 
+    *@Column(type="datetime", nullable=false) 
     */
     protected $updated_at;
   
-    function getId() {
+    public function getId() {
       return $this->id;
     }
 
-    function setName($name) {
+    public function setName($name) {
       return $this->name = $name;
     }
 
-    function getName() {
+    public function getName() {
       return $this->name;
     }
 
-    function setRole(Role $role) {
+    public function setRole(Role $role) {
       return $this->role = $role;
     }
 
-    function getRole() {
+    public function getRole() {
       return $this->role;
     }
 
-    public function setTitleName(Title $title) {
+    public function setTitle(Title $title) {
       return $this->title = $title;
     }
 
-    public function getTitleName(){
+    public function getTitle(){
       return $this->title;
     }
 
-    function setEmail($email) {
+    public function setEmail($email) {
       return $this->email = $email;
     }
 
-    function getEmail() {
+    public function getEmail() {
       return $this->email;
     }
 
-    function setPassword($password) {
+    public function setPassword($password) {
       return $this->password = $password;
     }
 
-    function getPassword() {
+    public function getPassword() {
       return $this->password;
     }
 
-    function getCreatedAt() {
+    public function getCreatedAt() {
       return $this->created_at;
     }
 
-    function setCreatedAt($created_at) {
+    public function setCreatedAt($created_at) {
       return $this->created_at = $created_at;
     }
 
-    function getUpdatedAt() {
+    public function getUpdatedAt() {
       return $this->updated_at;
     }
 
-    function setUpdatedAt($updated_at) {
+    public function setUpdatedAt($updated_at) {
       return $this->updated_at = $updated_at;
     }
 

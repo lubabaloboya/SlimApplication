@@ -30,7 +30,7 @@ class UserService {
     $user->setRole($role);
 
     $title = $this->_em->find('App\Entities\Title', $request->getParam('title_id'));
-    $user->setTitleName($title);
+    $user->setTitle($title);
 
     if (!is_null($request->getParam('email')) && !is_null($request->getParam('name')) ){
       $this->_em->persist($user);
@@ -44,7 +44,7 @@ class UserService {
   public function list_users() {
 
     $qb = $this->_em->createQueryBuilder();
-    $results = $qb->select(array('u', 'r','t'))
+      $results = $qb->select(array('u','r','t'))
       ->from('App\Entities\User', 'u')
       ->innerJoin('u.role', 'r')
       ->innerJoin('u.title', 't')
@@ -60,7 +60,7 @@ class UserService {
         ->from('App\Entities\User', 'u')
         ->innerJoin('u.role', 'r')
         ->innerJoin('u.title', 't')
-        ->where('u.id='. $id)
+        ->where('u.id'. $id)
         ->getQuery()
         ->getArrayResult();
       
@@ -68,16 +68,36 @@ class UserService {
   }
 
   public function update_user($request) {
-    $results = $this->_em
-      ->find('App\Entities\User', $request->getParam('id'));
-    var_dump($results);
-    die();
+
+    $results = $this->_em->find('App\Entities\User', $request->getParam('id'));
+
+    if (!empty($results)) {
+      $results->setName($request->getParam('name'));
+      $results->setEmail($request->getParam('email'));
+      $results->setPassword(password_hash($request->getParam('password'), PASSWORD_DEFAULT));
+      $results->setUpdatedAt($this->_date);
+  
+      if (!empty($request->getParam('role'))) {
+        $role = $this->_em->find('App\Entities\Role', $request->getParam('role'));
+        $results->setRole($role);
+      }
+
+      if (!empty($request->getParam('title'))) {
+        $title = $this->_em->find('App\Entities\Title', $request->getParam('title'));
+        $results->setTitle($title);
+      }
+
+      $this->_em->persist($results);
+      $this->_em->flush();
+      return $results;
+    }
+    return false;
   }
 
   public function delete_user($id) {
     $results = $this->_em
       ->find('App\Entities\User', $id);
-   
+
     if ($results) {
       $this->_em->remove($results);
       $this->_em->flush();

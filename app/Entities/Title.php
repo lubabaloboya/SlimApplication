@@ -3,26 +3,26 @@
 namespace App\Entities;
 
 /**
- * @Entity
- * @Table(name="titles")
+ *@Entity
+ *@Table(name="titles")
  */
 
 class Title {
 
   /**
-  * @id
-  * @Column(type="integer")
-  * @GeneratedValue
+  *@Id
+  *@Column(type="integer")
+  *@GeneratedValue()
   */
   protected $id;
 
   /** 
-  * @Column(type="string", nullable=false, ) 
+  *@Column(type="string", nullable=false) 
   */
   protected $titleName;
 
   /**
-  * @OneToMany(targetEntity="User", mappedBy="title")
+  *@OneToMany(targetEntity="User", mappedBy="title")
   */
   protected $user;
 

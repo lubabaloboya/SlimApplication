@@ -2,6 +2,7 @@
 
 use App\Services\UserService;
 use App\Services\AuthService;
+use App\Services\TitlesService;
 
 $container['UserService'] = function($container) {
     return new App\Services\UserService($container->get('entityManager'));
