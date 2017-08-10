@@ -20,9 +20,11 @@ class UsersController extends Controller {
 	public function usersList($request, $response) {
 
     $users = $this->UserService->list_users();
-    $results = $this->UserService->messages($users, 'Your request was successful');
-    return $results;
-    
+    //$results = $this->UserService->messages($users, 'Your request was successful');
+
+    return $this->view->render($response, 'users/userslist.twig', array(
+      'users' => $users
+      ));
 	}
 
   public function userView($request, $response) {

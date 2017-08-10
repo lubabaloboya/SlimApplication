@@ -7,7 +7,7 @@ class AuthMiddleware extends Middleware {
     public function __invoke($request, $response, $next){
 
         if(!$this->container->auth->check()){
-            $this->container->flash->addMessage('error', 'Please sing in before doing this.');
+            $this->container->flash->addMessage('error', 'Please sign in before doing this.');
             return $response->withRedirect($this->container->route->pathFor('auth.signin'));
         }
 

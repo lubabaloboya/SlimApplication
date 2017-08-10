@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Entities\User;
 use Doctrine\ORM\EntityManager;
-use Respect\Validation\Validator as v;
 
 class AuthService {
 
@@ -34,26 +33,26 @@ class AuthService {
   }
 
   public function attempt($email, $password) {
-       
-    $email_old = $this->_em->find('App\Entities\User', $email);
-    $password_old = $this->_em->find('App\Entities\User', $password);
+    
+    // $email_old = $this->_em->find('App\Entities\User', $email);
+    // $password_old = $this->_em->find('App\Entities\User', $password);
 
-    if(!$email_old && !$password_old) {
-      return false;
-    }
+    // if(!$email_old && !$password_old) {
+    //   return false;
+    // }
          
-    if(password_verify($password, $password_old)){
-      $_SESSION[user] = $user->id;
-      return true;
-    }
+    // if(password_verify($password, $password_old)) {
+    //   $_SESSION[user] = $user->id;
+    //   return true;
+    // }
 
-    return false;
+    // return false;
 
   }
 
   public function messages ($results, $msg) {
 
-    $array = array( 'Status' => false, 'Message' => 'Sorry your request was unseccesful', 'Results' => Null );
+    $array = array( 'Status' => false, 'Message' => 'Sorry your request was unsuccesful', 'Results' => Null );
     
     if (!empty($results) && !is_null($results) ) {
       $array['Status']  = true;

@@ -26,7 +26,7 @@ class Auth {
              $_SESSION[user] = $user->id;
              return true;
          }
-
+         
         return false;
 
     }

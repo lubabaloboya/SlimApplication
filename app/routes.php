@@ -2,7 +2,8 @@
 
 use App\Middleware\AuthMiddleware;
 
-$app->get('/', 'HomeController:index')->setName('home');
+$app->get('/home', 'HomeController:index')->setName('home');
+$app->get('/dashboard', 'DashboardController:index')->setName('dashboard');
 
 $app->get('/users/userslist', 'UsersController:usersList')->setName('users.list');
 $app->get('/users/userview', 'UsersController:userview')->setName('users.view');
